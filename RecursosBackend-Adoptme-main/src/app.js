@@ -7,6 +7,7 @@ import petsRouter from './routes/pets.router.js';
 import adoptionsRouter from './routes/adoption.router.js';
 import sessionsRouter from './routes/sessions.router.js';
 import { faker } from '@faker-js/faker';
+import errorHandler from './middlewares/errors.js'
 
 
 dotenv.config()
@@ -35,5 +36,5 @@ app.get("/mockingpets",(req,res)=> {
     }
     res.send({status:"success",payload:pets})
 })
-
+app.use(errorHandler)
 app.listen(PORT,()=>console.log(`Listening on ${PORT}`))

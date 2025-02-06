@@ -1,0 +1,14 @@
+{
+  "name": "clase3matematicacoder",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start":"node app.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.2",
+    "mongoose": "^8.10.0"
+  }
+}
