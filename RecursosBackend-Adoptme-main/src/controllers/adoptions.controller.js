@@ -13,6 +13,7 @@ const getAdoption = async(req,res)=>{
 }
 
 const createAdoption = async(req,res)=>{
+    
     const {uid,pid} = req.params;
     const user = await usersService.getUserById(uid);
     if(!user) return res.status(404).send({status:"error", error:"user Not found"});

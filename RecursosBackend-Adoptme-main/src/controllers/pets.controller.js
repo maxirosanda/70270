@@ -7,6 +7,7 @@ import __dirname from "../utils/index.js";
 
 const getAllPets = async(req,res)=>{
     const pets = await petsService.getAll();
+    req.logger.info("Getting all pets");
     res.send({status:"success",payload:pets})
 }
 
@@ -14,6 +15,7 @@ const createPet = async (req,res,next)=> {
     const {name,specie,birthDate} = req.body;
     try {
         if(!name||!specie||!birthDate) {
+            req.logger.error("Incomplete values");
             CustomError.createError({
                 name:"Pet creation error",
                 cause:generatePetCreatedErrorInfo({name,specie,birthDate}),
