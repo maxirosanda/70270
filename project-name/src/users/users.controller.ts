@@ -9,25 +9,21 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    const user:User = this.usersService.create(createUserDto);
+  async create(@Body() createUserDto: CreateUserDto) {
+    const user = await this.usersService.create(createUserDto);
     return {status: 'success', data: user};
   }
 
   @Get()
-  findAll(@Query("limit") limit : number) {
-    const users = this.usersService.findAll(limit);
+  async findAll(@Query("limit") limit : number) {
+    const users = await this.usersService.findAll(limit);
     return {status: 'success', data: users};
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    
-    if(isNaN(Number(id)) || !Number.isInteger(Number(id)) || Number(id) < 1){
-      throw new HttpException('Invalid id', 400);
-    }
+  async findOne(@Param('id') id: string) {
 
-    const user = this.usersService.findOne(Number(id));
+    const user = await this.usersService.findOne(id);
     if(!user){
       throw new HttpException('User not found', 404);
     }
@@ -35,14 +31,14 @@ export class UsersController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    const message:string = this.usersService.update(Number(id), updateUserDto);
+  async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+    const message:string = await this.usersService.update(id, updateUserDto);
     return {status: 'success', message}
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    const message:string =  this.usersService.remove(+id);
+  async remove(@Param('id') id: string) {
+    const message:string = await  this.usersService.remove(id);
     return {status: 'success', message}
   }
 }
