@@ -8,7 +8,7 @@ import { ConfigModule,ConfigService } from '@nestjs/config';
 @Module({
   imports: [    UsersModule,
                 ProductsModule,
-                ConfigModule.forRoot(),
+                ConfigModule.forRoot({isGlobal: true}),
                 MongooseModule.forRootAsync({
                   imports: [ConfigModule],
                   inject: [ConfigService],
