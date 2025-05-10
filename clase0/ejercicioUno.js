@@ -1,4 +1,5 @@
 const listNumbers = (...numbers) => {
+    console()
     const types = numbers.map(number => typeof number);
     const isValid = types.every(type => type === 'number');
     if (!isValid) {
@@ -15,4 +16,12 @@ process.on("exit",code => {
     }
     console.log(`Server is stopping with code ${code}`)
 })
-listNumbers(1,2,3,4,5,6,7,8,9,10) // [1,2,3,4,5,6,7,8,9,10]
+
+process.on("uncaughtException",error => {
+    console.log("error por console()")
+    console.error(error)
+    process.exit(1)
+})
+
+
+listNumbers(1,2,3,4,5,6,7,8,9,"a") // [1,2,3,4,5,6,7,8,9,10]

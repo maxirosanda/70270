@@ -25,6 +25,7 @@ app.get("/calculo-nobloq",(req,res) => {
         res.send(`La suma es ${resultado}`)
     })
 })
+
 let counter = 0
 app.get("/",(req,res) => {
     counter++

@@ -22,10 +22,6 @@ process.on("exit",code => {
     console.log(`Server is stopping with code ${code}`)
 })
 
-process.on("uncaughtException",error => {
-    console.error(error)
-    process.exit(1)
-})
 
 app.listen(config.port,() => {
     console.log(`Server is running on port ${config.port}`)
